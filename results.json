@@ -1,0 +1,41 @@
+[
+  {
+    "type": "missing_signature",
+    "message": "Function 'executeCEXCall' lacks signature verification",
+    "impact": "High",
+    "confidence": "Medium",
+    "element": {
+      "name": "executeCEXCall",
+      "type": "function",
+      "visibility": "external",
+      "source_mapping": "test_contracts/VulnerableCEXInterface.sol#13-19",
+      "contract": "VulnerableCEXInterface"
+    }
+  },
+  {
+    "type": "plaintext_creds",
+    "message": "Plaintext credentials: 'apiSecret'",
+    "impact": "Critical",
+    "confidence": "High",
+    "element": {
+      "name": "apiSecret",
+      "type": "string",
+      "visibility": "public",
+      "source_mapping": "test_contracts/VulnerableCEXInterface.sol#6",
+      "contract": "VulnerableCEXInterface"
+    }
+  },
+  {
+    "type": "plaintext_creds",
+    "message": "Plaintext credentials: 'userCredentials'",
+    "impact": "Critical",
+    "confidence": "High",
+    "element": {
+      "name": "userCredentials",
+      "type": "mapping(address => string)",
+      "visibility": "public",
+      "source_mapping": "test_contracts/VulnerableCEXInterface.sol#7",
+      "contract": "VulnerableCEXInterface"
+    }
+  }
+]
