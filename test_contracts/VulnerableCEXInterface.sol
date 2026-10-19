@@ -26,3 +26,4 @@ contract VulnerableCEXInterface {
         lastRequestTime[msg.sender] = block.timestamp;
     }
 }
+
