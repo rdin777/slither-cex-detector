@@ -5,10 +5,16 @@ on:
     branches: [main, develop]
     paths:
       - 'test_contracts/**/*.sol'
+      - '.github/workflows/**'  # ← Добавили!
+      - 'slither_cex_detector/**/*.py'  # ← Добавили!
+      - 'run_detector.py'  # ← Добавили!
   pull_request:
     branches: [main]
     paths:
       - 'test_contracts/**/*.sol'
+      - '.github/workflows/**'
+      - 'slither_cex_detector/**/*.py'
+      - 'run_detector.py'
 
 jobs:
   security-analysis:
