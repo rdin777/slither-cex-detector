@@ -1,3 +1,19 @@
+In two weeks, slither-cex-detector has been cloned 60 times.
+
+What the developers found:
+- Hardcoded API keys in CEX interfaces
+- Missing signature verification
+- Plaintext credentials on-chain
+
+The most common pattern: blockchain developers store API keys as string variables.
+
+markdown
+![CEX Interface Security Check](https://github.com/rdin777/slither-cex-detector/actions/workflows/security-check.yml/badge.svg)
+![Test CEX Detector](https://github.com/rdin777/slither-cex-detector/actions/workflows/test-detector.yml/badge.svg)
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+
+
+
 # 🛡️ Slither CEX Detector
 
 **Custom Slither detector for identifying security vulnerabilities in CEX (Centralized Exchange) interface smart contracts.**
