@@ -424,3 +424,8 @@ DeFi Security Community - For continuous learning and collaboration
 If this project helped you, please consider giving it a star! ⭐
 Made with ❤️ for the Web3 security community
 
+markdown
+## 📚 Learn More
+
+- 📖 [The Next Frontier: Using AI Agents to Build Custom Slither Detectors](https://dev.to/rdin777/the-next-frontier-using-ai-agents-to-build-custom-slither-detectors-221f) — Deep dive into the methodology behind this detector and the future of AI-assisted Web3 security.
+
