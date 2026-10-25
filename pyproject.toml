@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "slither-cex-detector"
-version = "0.1.0"
+version = "0.2.0"
 description = "Custom Slither detector for CEX interface security vulnerabilities"
 readme = "README.md"
 license = {text = "MIT"}
@@ -19,6 +19,7 @@ dependencies = [
 
 [project.entry-points."slither.detectors"]
 cex_interface = "slither_cex_detector.detector:CEXInterfaceDetector"
+hardhat_keys = "slither_cex_detector.detector:HardhatTestKeyDetector"
 
 [tool.setuptools.packages.find]
 include = ["slither_cex_detector*"]

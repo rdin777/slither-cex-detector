@@ -184,3 +184,55 @@ Use environment variables or secure key management systems instead of hardcoding
 
 def register_detectors(slither):
     slither.register_detector(CEXInterfaceDetector)
+
+
+class HardhatTestKeyDetector(AbstractDetector):
+    ARGUMENT = 'hardhat-test-keys'
+    HELP = 'Detects hardcoded Hardhat test private keys or addresses'
+    IMPACT = DetectorClassification.HIGH
+    CONFIDENCE = DetectorClassification.HIGH
+    WIKI = 'https://github.com/rdin777/slither-cex-detector'
+    WIKI_TITLE = 'Hardhat Test Keys in Production'
+    WIKI_DESCRIPTION = 'Detects the use of well-known Hardhat test private keys or addresses, which can lead to immediate fund drainage if deployed to mainnet.'
+    WIKI_EXPLOIT_SCENARIO = '''
+A developer accidentally commits a Hardhat test private key (e.g., 0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80) to a contract. An attacker monitors the blockchain, extracts the key, and drains all associated funds.
+'''
+    WIKI_RECOMMENDATION = 'Never use test network private keys or addresses in production code. Use secure secret management (e.g., HashiCorp Vault, AWS KMS) and environment variables.'
+
+    KNOWN_TEST_KEYS = [
+        "0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80",
+        "0x59c6995e998f97a5a0044966f0945389dc9e86dae88c7a8412f4603b6b78690d",
+        "0x5de4111afa1a4b94908f83103eb1f1706367c2e68ca870fc3fb9a804cdab365a",
+    ]
+    
+    KNOWN_TEST_ADDRESSES = [
+        "0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266",
+        "0x70997970c51812dc3a010c7d01b50e0d17dc79c8",
+    ]
+
+    def _detect(self):
+        results = []
+        for contract in self.compilation_unit.contracts_derived:
+            # 1. Проверка state variables
+            for var in contract.state_variables:
+                if hasattr(var, 'expression') and var.expression:
+                    expr_str = str(var.expression).lower().replace(" ", "").replace('"', "").replace("'", "")
+                    for key in self.KNOWN_TEST_KEYS:
+                        if key.lower() in expr_str:
+                            info = [f"CRITICAL: Hardhat test private key detected in variable '{var.name}'\n"]
+                            res = self.generate_result(info)
+                            res.add(var)
+                            results.append(res)
+            
+            # 2. Проверка hardcoded адресов в коде
+            for func in contract.functions:
+                for node in func.nodes:
+                    node_str = str(node).lower().replace(" ", "")
+                    for addr in self.KNOWN_TEST_ADDRESSES:
+                        if addr in node_str:
+                            info = [f"CRITICAL: Hardhat test address detected in function '{func.name}'\n"]
+                            res = self.generate_result(info)
+                            res.add(node)
+                            results.append(res)
+                            
+        return results

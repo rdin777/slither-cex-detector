@@ -7,18 +7,25 @@ contract VulnerableCEXInterface {
     mapping(address => string) public userCredentials;
     mapping(address => uint256) public lastRequestTime;
     address public owner;
+    
+    // 🚨 VULNERABILITY: Hardcoded known test address Hardhat #0
+    address public hardcodedAdmin = 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266; 
 
-    constructor() { owner = msg.sender; }
+    constructor() { 
+        owner = msg.sender; 
+    }
 
     function executeCEXCall(string calldata endpoint, bytes calldata data) 
         external returns (bytes memory) {
         lastRequestTime[msg.sender] = block.timestamp;
+        // 🚨 VULNERABILITY: Missing signature verification before an external call
         (bool success, bytes memory result) = address(0x1234).call(data);
         require(success, "CEX call failed");
         return result;
     }
 
     function storeCredentials(string calldata apiKey, string calldata secret) external {
+        // 🚨 VULNERABILITY: Storing credentials in plaintext (plaintext)
         userCredentials[msg.sender] = string(abi.encodePacked(apiKey, ":", secret));
     }
 
@@ -26,4 +33,3 @@ contract VulnerableCEXInterface {
         lastRequestTime[msg.sender] = block.timestamp;
     }
 }
-
