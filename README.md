@@ -8,7 +8,7 @@ Custom Slither detectors for identifying security vulnerabilities in CEX (Centra
 
 ---
 
-## 🚀 What's New in v0.2.0
+##  What's New in v0.2.0
 - **🆕 NEW DETECTOR:** `hardhat-test-keys` — Detects hardcoded well-known development private keys and addresses (e.g., Hardhat Account #0) to prevent immediate fund drainage on mainnet deployment.
 - **⚡ Native Slither CLI Support:** Fully integrated via `pyproject.toml` entry points. No need for custom wrapper scripts; run directly with `slither --detect ...`.
 - **🎯 Improved Accuracy:** Enhanced AST-based signature verification checks and better false-positive reduction for safe rate-limiting patterns.
@@ -44,7 +44,7 @@ Smart contracts interacting with CEX handle critical operations: API key managem
    Use of well-known development keys (e.g., Hardhat Account #0: `0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80`) in production code.
 3. **🔐 Missing Signature Verification (High)**  
    External function calls that don't verify cryptographic signatures (e.g., missing `ecrecover` checks), allowing unauthorized parties to trigger actions.
-4. **⏰ Insecure Nonce Handling (Medium)**  
+4. ** Insecure Nonce Handling (Medium)**  
    Using manipulable `block.timestamp` or `block.number` for request signing instead of incrementing state nonces. *(Note: Safe rate-limiting patterns are correctly ignored).*
 5. **📄 Plaintext Credential Storage (Critical)**  
    Storing sensitive data as `string` or `bytes` types on-chain, making it publicly visible.
@@ -61,7 +61,6 @@ Smart contracts interacting with CEX handle critical operations: API key managem
 ```bash
 git clone https://github.com/rdin777/slither-cex-detector.git
 cd slither-cex-detector
-
 Step 2: Create and activate a virtual environment
 python3 -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
@@ -78,6 +77,9 @@ slither test_contracts/VulnerableCEXInterface.sol --detect cex-interface-securit
 Export to JSON (Perfect for CI/CD)
 slither . --detect cex-interface-security,hardhat-test-keys --json results.json
 cat results.json
+Legacy Wrapper Script (Optional)
+If you prefer the custom wrapper, it is still available:
+python3 run_slither.py test_contracts/VulnerableCEXInterface.sol
 🔧 CI/CD Integration
 Add this workflow to .github/workflows/security.yml to automatically check every PR:
 name: CEX Interface Security Check
@@ -129,6 +131,7 @@ slither-cex-detector/
 ├── test_contracts/
 │   ├── VulnerableCEXInterface.sol  # Example with vulnerabilities
 │   └── SecureCEXInterface.sol      # Secure implementation
+├── run_slither.py           # CLI wrapper script
 ├── pyproject.toml           # Python package configuration (v0.2.0)
 ├── CHANGELOG.md             # Version history
 ├── README.md                # This file
@@ -152,4 +155,3 @@ GitHub: @rdin777
 Twitter: @DinRid56379
 Project Link: https://github.com/rdin777/slither-cex-detector
 Made with ❤️ for the Web3 security community.
-
