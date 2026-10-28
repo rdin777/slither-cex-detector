@@ -1,3 +1,6 @@
+If you find this useful, please ⭐ star the repo!
+
+
 # 🛡️ Slither CEX Detector (v0.2.0)
 
 Custom Slither detectors for identifying security vulnerabilities in CEX (Centralized Exchange) interface smart contracts and preventing catastrophic test-key leakage.
