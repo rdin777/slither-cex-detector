@@ -1,3 +1,7 @@
+## 🎥 Demo
+
+Watch Slither in action: [How Slither Catches Smart Contract Vulnerabilities](https://youtu.be/B9Xwe2WeU60)
+
 If you find this useful, please ⭐ star the repo!
 
 
