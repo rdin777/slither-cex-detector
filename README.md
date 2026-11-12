@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # 🛡️ Slither CEX Detector Toolkit (v0.4.0)
 =======
 ## 🎥 Demo
