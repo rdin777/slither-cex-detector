@@ -1,4 +1,15 @@
+<<<<<<< HEAD
 # 🛡️ Slither CEX Detector Toolkit (v0.4.0)
+=======
+## 🎥 Demo
+
+Watch Slither in action: [How Slither Catches Smart Contract Vulnerabilities](https://youtu.be/B9Xwe2WeU60)
+
+If you find this useful, please ⭐ star the repo!
+
+
+# 🛡️ Slither CEX Detector (v0.2.0)
+>>>>>>> 67c13bf0400de9283923997cd62e8094024386ba
 
 A collection of custom [Slither](https://github.com/crytic/slither) detectors designed to identify specific smart contract vulnerabilities, with a focus on CEX integrations, oracle manipulations, and DeFi security patterns.
 
