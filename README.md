@@ -73,3 +73,7 @@ Open a Pull Request
 📜 License
 Distributed under the MIT License. See LICENSE for more information.
 Built with ❤️ for the Web3 Security Community.
+
+## 📚 Articles & Resources
+
+- 📝 **[Building 3 Custom Slither Detectors (v0.4.0 Release)](https://dev.to/rdin777/building-3-custom-slither-detectors-for-smart-contract-security-v040-release-1g4g)** - Full technical breakdown on DEV.TO
